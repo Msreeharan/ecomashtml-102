@@ -1,0 +1,19 @@
+{
+  "name": "ecomas",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "await": "^0.2.6",
+    "axios": "^1.8.4",
+    "crypto-js": "^4.2.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.2.0",
+    "nodemailer": "^6.10.1",
+    "nodemon": "^3.1.9"
+  }
+}

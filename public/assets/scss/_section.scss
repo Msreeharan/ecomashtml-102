@@ -1,0 +1,202 @@
+
+//>>>>> Section Title Start <<<<<//
+
+.section-title{
+	position: relative;
+	z-index: 99;
+	margin-bottom: 10px;
+	margin-top: -6px;
+
+	.sub-title {
+		font-size: 18px;
+		font-weight: 400;
+		color: $theme-color;
+		font-family: $heading-font;
+		margin-bottom: 15px;
+		text-transform: capitalize;
+		display: inline-block;
+	}
+
+	@include breakpoint (max-md){
+		margin-bottom: 0;
+	}
+
+	
+
+	&.style-3 {
+
+		.sub-title {
+			color: $theme-color-2
+		}
+	}
+}
+
+.section-title-area	{
+	@include flex;
+	justify-content: space-between;
+	position: relative;
+	z-index: 9;
+
+	
+	@include breakpoint (max-lg) {
+		flex-wrap: wrap;
+		// justify-content: center;
+		// text-align: center;
+		gap: 30px;
+	}
+
+	.nav {
+		@include flex;
+		border-bottom: 1px solid rgba(223, 224, 225, 1);
+		justify-content: center;
+	
+
+		@include breakpoint (max-xl){
+			gap: 30px;
+			flex-wrap: wrap;
+		}
+
+		.nav-item {
+			padding: 0;
+			position: relative;
+
+		   .nav-link {
+				font-size: 18px;
+				font-weight: 500;
+				color: rgba(160, 162, 164, 1);
+				position: relative;
+
+				&::before {
+					position: absolute;
+					right: -4px;
+					top: 20px;
+					content: "";
+					width: 5px;
+					height: 5px;
+					border-radius: 5px;
+					background-color: rgba(0, 91, 255, 0.20);
+
+					@include breakpoint (max-xl){
+					   display: none;
+					}
+				}
+
+				&.bb-none {
+					&::before {
+						display: none;
+					}
+				}
+
+				&.active {
+					color: $header-color;
+
+					&::before {
+						background-color: $theme-color;
+					}
+
+					&::after {
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						height: 1px;
+						width: 100%;
+						content: "";
+						background: $header-color;
+						transition: .3s;
+					}
+				}
+		   }
+		}
+	}
+
+	.array-buttons {
+        margin-top: 30px;
+        margin-left: 60px;
+        gap: 5px;
+
+        @include breakpoint (max-xl) {
+            margin-left: 0;
+         }
+
+        .array-prev {
+            color: $header-color;
+            background: transparent;
+            box-shadow: none;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+
+        .array-next {
+            color: rgba(214, 217, 224, 1);
+            background: transparent;
+            box-shadow: none;
+            border-left: 1px solid rgba(214, 217, 224, 1);
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+
+//>>>>> Section Title End <<<<<//
+
+//>>>>> Basic Css Start <<<<<//
+
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.section-bg-2 {
+	background-color: $bg-color-2;
+}
+
+.section-bg {
+	background-color: $bg-color;
+}
+
+.theme-bg {
+	background-color: $theme-color;
+}
+
+.footer-bg {
+	background: #F5F5F5;
+}
+
+.footer-bg-2 {
+	background: $header-color !important;
+}
+
+.shop-bg {
+	background: #EFF1F5;
+}
+
+.theme-2 {
+	border-color: $theme-color-2;
+}
+
+.section-padding {
+	padding: 80px 0;
+
+	@include breakpoint(max-xl){
+		padding: 80px 0;
+	}
+
+	@include breakpoint(max-lg){
+		padding: 80px 0;
+	}
+}
+
+.section-padding-2 {
+	padding: 100px 0;
+
+	@include breakpoint(max-lg){
+		padding: 80px 0;
+	}
+}
+//>>>>> Basic Css End <<<<<//
+

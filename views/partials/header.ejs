@@ -1,0 +1,82 @@
+<!-- Header Section Start -->
+<header style="background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 999;">
+    <div
+        style="max-width: 1140px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+        <div class="logo">
+            <a href="/" style="display: inline-block;">
+                <img src="/assets/img/logo/logo.jpg" alt="logo-img" style="height: 50px;">
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" style="font-size: 26px; background: none; border: none; display: none;">☰</button>
+
+        <!-- Desktop Menu -->
+        <nav id="desktopMenu" style="display: flex; gap: 20px;">
+            <a href="/" style="text-decoration: none; color: #333;">Home</a>
+            <a href="/about" style="text-decoration: none; color: #333;">About</a>
+            <a href="/Booking" style="text-decoration: none; color: #333;">Booking</a>
+            <a href="/service" style="text-decoration: none; color: #333;">Service</a>
+            <a href="/vehicle" style="text-decoration: none; color: #333;">Vehicles</a>
+            <a href="/tariff" style="text-decoration: none; color: #333;">Tariff</a>
+            <a href="/cities" style="text-decoration: none; color: #333;">Cities</a>
+            <a href="/contact" style="text-decoration: none; color: #333;">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu (Left Sidebar) -->
+    <div id="mobileMenu"
+        style="position: fixed; top: 0; left: -260px; width: 250px; height: 100%; background: #fff; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.2); transition: left 0.3s ease; z-index: 1001;">
+        <button id="closeMenuBtn"
+            style="font-size: 20px; background: none; border: none; position: absolute; top: 10px; right: 10px;">✖</button>
+        <ul style="list-style: none; padding-top: 60px; padding-left: 0;">
+            <li style="margin-bottom: 15px;"><a href="/" style="text-decoration: none; color: #333;">Home</a></li>
+            <li style="margin-bottom: 15px;"><a href="/about" style="text-decoration: none; color: #333;">About</a></li>
+            <li style="margin-bottom: 15px;"><a href="/Booking" style="text-decoration: none; color: #333;">Booking</a>
+            </li>
+            <li style="margin-bottom: 15px;"><a href="/service" style="text-decoration: none; color: #333;">Service</a>
+            </li>
+            <li style="margin-bottom: 15px;"><a href="/vehicle" style="text-decoration: none; color: #333;">Vehicles</a>
+            </li>
+            <li style="margin-bottom: 15px;"><a href="/tariff" style="text-decoration: none; color: #333;">Tariff</a>
+            </li>
+            <li style="margin-bottom: 15px;"><a href="/cities" style="text-decoration: none; color: #333;">Cities</a>
+            </li>
+            <li style="margin-bottom: 15px;"><a href="/contact" style="text-decoration: none; color: #333;">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div id="menuOverlay"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000;">
+    </div>
+</header>
+
+<!-- Script for Responsive Toggle -->
+<script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const desktopMenu = document.getElementById('desktopMenu');
+
+    function toggleMobile(show) {
+        mobileMenu.style.left = show ? '0' : '-260px';
+        overlay.style.display = show ? 'block' : 'none';
+    }
+
+    mobileBtn?.addEventListener('click', () => toggleMobile(true));
+    closeBtn?.addEventListener('click', () => toggleMobile(false));
+    overlay?.addEventListener('click', () => toggleMobile(false));
+
+    // Show/hide buttons and menus on screen size change
+    function handleResize() {
+        const isMobile = window.innerWidth <= 991;
+        mobileBtn.style.display = isMobile ? 'block' : 'none';
+        desktopMenu.style.display = isMobile ? 'none' : 'flex';
+    }
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('DOMContentLoaded', handleResize);
+</script>

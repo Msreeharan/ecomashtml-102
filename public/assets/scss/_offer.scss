@@ -1,0 +1,175 @@
+.offer-wrapper {
+
+    .offer-card-item {
+        @include flex;
+        gap: 40px;
+        padding: 0px 40px 0;
+        background-color: $bg-color-3;
+
+        @include breakpoint (max-xl) {
+            gap: 0px;
+            padding: 20px 30px 20px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            p {
+                font-size: 16px;
+                color: $theme-color;
+            }
+
+            h3 {
+                font-size: 30px;
+                margin-bottom: 30px;
+
+               a {
+                    &:hover {
+                        color: $theme-color;
+                    }
+               }
+            }
+
+            .theme-btn {
+                background-color: transparent;
+                border: 1.5px solid rgba(1, 15, 28, 0.10);
+                color: $header-color;
+                padding: 10px 22px;
+
+                &:hover {
+                    color: $white;
+                }
+            }
+        }
+
+        .offer-image {
+            img {
+                @include imgw;
+            }
+        }
+    }
+
+    .offer-box {
+        padding: 30px 40px 0;
+        background: #F0F6EF;
+        margin-top: 24px;
+
+        @include breakpoint (max-xl) {
+            padding: 30px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            margin-bottom: 15px;
+
+            span {
+                color: $theme-color;
+            }
+
+            h3 {
+                font-size: 30px;
+
+                @include breakpoint (max-xl) {
+                    font-size: 25px;
+                }
+
+               a {
+                    &:hover {
+                        color: $theme-color;
+                    }
+               }
+            }
+        }
+
+        .offer-image {
+           text-align: center;
+           max-width: 126px;
+        }
+
+        &.style-2 {
+            background: #F8F1E6;
+
+            .offer-image {
+                max-width: 167px;
+             }
+        }
+    }
+
+    .offer-bg-box {
+        height: 596px;
+        position: relative;
+
+        @include breakpoint (max-lg) {
+            height: 550px;
+        }
+
+        @include breakpoint (max-md) {
+            height: 450px;
+        }
+
+        @include breakpoint (max-sm) {
+            height: 350px;
+        }
+
+        &::before {
+            @include before;
+            background: rgba(1, 15, 28, 0.30);
+        }
+
+        .content {
+           position: absolute;
+           left: 60px;
+           bottom: 60px;
+
+           @include breakpoint (max-xl) {
+                left: 30px;
+                bottom: 30px;
+           }
+
+            p {
+                font-size: 16px;
+                color: $white;
+            }
+
+            h3 {
+                font-size: 40px;
+                margin-bottom: 20px;
+                line-height: 128%;
+
+                @include breakpoint (max-xl) {
+                    font-size: 35px;
+                }
+
+                @include breakpoint (max-sm) {
+                    font-size: 30px;
+                }
+
+                @include breakpoint (max-xs) {
+                    font-size: 27px;
+                }
+
+               a {
+                color: $white;
+
+                    &:hover {
+                        color: $theme-color;
+                    }
+               }
+            }
+
+            .theme-btn {
+                background-color: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.30);
+                padding: 10px 22px;
+                color: $white;
+
+                &::before {
+                    background-color: $theme-color;
+                }
+
+                &:hover {
+                    border: 1px solid $theme-color;
+                }
+            }
+        }
+    }
+}

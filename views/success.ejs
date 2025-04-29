@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<< Header Area >>-->
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Gramentheme">
+    <meta name="description" content="Ecomas - Multipurpose Ecommerce HTML Template">
+    <!-- ======== Page title ============ -->
+    <title>Metro Cabs</title>
+    <!--<< Favcion >>-->
+    <link rel="shortcut icon" href="/assets/img/favicon.svg">
+    <!--<< Bootstrap min.css >>-->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!--<< All Min Css >>-->
+    <link rel="stylesheet" href="/assets/css/all.min.css">
+    <!--<< Animate.css >>-->
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!--<< Magnific Popup.css >>-->
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+    <!--<< MeanMenu.css >>-->
+    <link rel="stylesheet" href="/assets/css/meanmenu.css">
+    <!--<< Swiper Bundle.css >>-->
+    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css">
+    <!--<< Nice Select.css >>-->
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <!--<< Color.css >>-->
+    <link rel="stylesheet" href="/assets/css/color.css">
+    <!--<< Main.css >>-->
+    <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+    <style>
+        .font-size-md {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        #popupMsg {
+            display: none !important;
+        }
+    </style>
+
+    </head>
+
+    <body>
+        <div class="main-wrapper innerpagebg">
+
+            <%- include('./partials/header') -%>
+
+
+                <div class="breadcrumb-bar">
+                    <div class="container">
+                        <div class="row align-items-center text-center">
+                            <div class="col-md-12 col-12">
+                                <h2 class="breadcrumb-title">Booking Confirmation</h2>
+                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Booking Confirmation</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="py-5">
+                    <div class="container">
+                        <div class="card p-4">
+                            <h2 class="text-success text-center">Booking Confirmed</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image w-100 overflow-hidden">
+                                        <img src="/assets/img/car/metro.jpg" alt="Booking Confirmed"
+                                            class="h-100 w-100 object-fit-contain">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="py-4">
+                                        <h3>Booking Details : </h3>
+                                        <ul>
+                                            <li><strong>Booking Id : </strong><span id="bookID"> 98263</span></li>
+                                            <li><strong>Name : </strong><span id="name"> Testing</span></li>
+                                            <li><strong>Phone No : </strong><span id="mobile"> 1234567890</span></li>
+                                            <li><strong>Email ID : </strong><span id="email"> test@gmail.com</span></li>
+                                            <li><strong>Service : </strong><span id="service"> One Way</span></li>
+                                            <li><strong>Car Type : </strong><span id="cName"> Sedan</span></li>
+                                            <li><strong>Pickup Location : </strong><span id="pick"> Orgin</span></li>
+                                            <li><strong>Drop Location : </strong><span id="drop"> Destination</span>
+                                            </li>
+                                            <li><strong>Distance : </strong><span id="distance"> 100</span>km</li>
+                                            <li><strong>Duration : </strong><span id="duration"> 10hr</span></li>
+                                            <li><strong>Pickup Date : </strong><span id="pickupDate"> Pickup Date</span>
+                                            </li>
+                                            <li><strong>Pickup Time : </strong><span id="pickupTime"> Pickup Time</span>
+                                            </li>
+                                            <li id="dropDate"></li>
+                                            <li><strong>Esitmated Fare : </strong>Rs.<span id="price">Price</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="text-center py-4">
+                                        <a onclick="sendMsgToWhatsapp()"
+                                            class="text-white bg-success px-4 py-3 rounded">Send to Whatsapp</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <%- include('./partials/footer') -%>
+
+        </div>
+
+        <script>
+
+            const bookingData = JSON.parse(sessionStorage.getItem('bookingInfo'))
+
+            console.log(bookingData);
+
+            const elementsId = ["name", "mobile", "bookID", "pick", "drop", "distance", "duration", "email"]
+            elementsId.forEach(id => {
+                console.log(id);
+                try {
+                    document.getElementById(id).innerHTML = bookingData[id]
+                } catch (err) {
+                }
+            })
+
+            document.getElementById('service').innerHTML = bookingData?.service == "0" ? "One-way Trip" : "Round Trip"
+            document.getElementById('pickupDate').innerHTML = (bookingData?.pickupDateTime).split('T')[0];
+            document.getElementById('pickupTime').innerHTML = (bookingData?.pickupDateTime).split('T')[1];
+
+            document.getElementById("price").innerHTML = bookingData?.estimatedData?.price
+            document.getElementById("cName").innerHTML = bookingData?.estimatedData?.cName
+
+            if (bookingData?.service == '1') {
+                document.getElementById("dropDate").innerHTML = "<strong>Drop Date : </strong>" + bookingData?.dropDate
+            }
+
+            function sendMsgToWhatsapp() {
+                const { bookID, name, mobile, email, from, to, pickupDateTime, service, estimatedData } = bookingData
+                const message = `Hello+Metro cabs !%0A%0AMy+booking+details:%0ABooking+Id:+${bookID}%0AName:+${name}%0AMobile:+${mobile}%0AEmail+Id:+${email}%0APickup+Location:+${from}%0ADrop+Location:+${to}%0APickup+Date:+${pickupDateTime}%0AService:+${(service == "0") ? 'One-Way' : 'Round+Trip'}%0APrice:+Rs.${estimatedData?.price}%0ACar:+${estimatedData?.cName}`
+
+                window.open(`https://api.whatsapp.com/send/?phone=+918088119494&text=${message}&type=phone_number&app_absent=0`, '_blank')
+            }
+
+        </script>
+        <!-- scripts -->
+       
+        <!--<< All JS Plugins >>-->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!--<< Viewport Js >>-->
+        <script src="assets/js/viewport.jquery.js"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <!--<< Counterup Js >>-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!--<< Wow Animation Js >>-->
+        <script src="assets/js/wow.min.js"></script>
+        <!--<< Main.js >>-->
+        <script src="assets/js/main.js"></script>
+        </body>
