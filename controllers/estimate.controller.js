@@ -26,10 +26,10 @@ const estimateHandler = async (req, res) => {
     const bookID = Math.floor((Math.random() * 1000000) + 1);
 
     // Telegram
-    await Promise.all([
-        telegramService.sendEnquiry({ ...req.body, bookID }),
-        sendEnquiry.sendEnquiry({ ...req.body, bookID })// Use mailService.sendEnquiry
-    ]);
+    // await Promise.all([
+    //     telegramService.sendEnquiry({ ...req.body, bookID }),
+    //     sendEnquiry.sendEnquiry({ ...req.body, bookID })// Use mailService.sendEnquiry
+    // ]);
 
     let origins = [`${from}`];
     let destinations = [`${to}`];
