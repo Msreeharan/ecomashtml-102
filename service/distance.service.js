@@ -9,8 +9,10 @@ async function findDistanceAndTime(origin, destination) {
         origin,
         destination
     };
+    console.log("Distance and Time Data:", data);
     return data;
   } catch (err) {
+    console.error("Error fetching distance and time:", err.message);
     return err.message;
   }
 }

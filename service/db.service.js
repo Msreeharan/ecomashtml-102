@@ -1,19 +1,6 @@
-import admin from 'firebase-admin';
-import { readFileSync } from "fs";
-const serviceAccount = JSON.parse(
-    readFileSync(new URL("../config/firebase.config.json", import.meta.url))
-  );
-  
-  
-    // Initialize Firebase app
-    if (!admin.apps.length) {
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount)
-            
-        });
-    }
-const db = admin.firestore();
+import admin from "../config/firebase.config.js";
 
+const db = admin.firestore();
 export async function getPriceByService(service) {
     console.log("DB-->Data")
     try {
